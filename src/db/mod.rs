@@ -231,6 +231,7 @@ pub struct Db {
 impl DbBeatmap {
   fn read_star_rating(
     mut reader: impl io::BufRead,
+    version: u32,
   ) -> DbResult<Vec<(Mods, f64)>> {
     let count = reader.read_u32::<LittleEndian>()?;
     let ratings = (0..count)
@@ -242,8 +243,13 @@ impl DbBeatmap {
             Mods::from_bits(value).ok_or(DbError::InvalidMods(value))?
           },
           {
-            assert_eq!(reader.read_u8()?, 0x0D);
-            reader.read_f64::<LittleEndian>()?
+            assert_eq!(reader.read_u8()?, 0x0C);
+            // "Until database version 20250107, this was a collection of Int-Double pairs"
+            if version > 20250107 {
+              reader.read_f32::<LittleEndian>()? as f64
+            } else {
+              reader.read_f64::<LittleEndian>()?
+            }
           },
         ))
       })
@@ -293,10 +299,10 @@ impl DbBeatmap {
       hp_drain: reader.read_f32::<LittleEndian>()?,
       overall_difficulty: reader.read_f32::<LittleEndian>()?,
       slider_velocity: reader.read_f64::<LittleEndian>()?,
-      std_star_rating: Self::read_star_rating(&mut reader)?,
-      std_taiko_rating: Self::read_star_rating(&mut reader)?,
-      std_ctb_rating: Self::read_star_rating(&mut reader)?,
-      std_mania_rating: Self::read_star_rating(&mut reader)?,
+      std_star_rating: Self::read_star_rating(&mut reader, version)?,
+      std_taiko_rating: Self::read_star_rating(&mut reader, version)?,
+      std_ctb_rating: Self::read_star_rating(&mut reader, version)?,
+      std_mania_rating: Self::read_star_rating(&mut reader, version)?,
       drain_time: Millis(reader.read_i32::<LittleEndian>()? * 1000), // the file contains seconds, not milliseconds
       total_time: Millis(reader.read_i32::<LittleEndian>()?),
       preview_time: Millis(reader.read_i32::<LittleEndian>()?),
