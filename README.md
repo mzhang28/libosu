@@ -1,10 +1,9 @@
 libosu
 ======
 
-[![CI](https://travis-ci.org/iptq/libosu.svg?branch=master)](https://travis-ci.org/iptq/libosu)
 [![Crates.io](https://img.shields.io/crates/d/libosu.svg)][1]
 [![Documentation](https://docs.rs/libosu/badge.svg)][2]
-[![dependency status](https://deps.rs/repo/github/iptq/libosu/status.svg)][3]
+[![dependency status](https://deps.rs/repo/github/mzhang28/libosu/status.svg)][3]
 
 General-purpose osu! library
 
@@ -34,8 +33,8 @@ functions, or check out some of the examples (pending).
 Projects using libosu
 ---------------------
 
-- [editor](https://github.com/iptq/editor): wip osu editor
-- [mapping-tools](https://github.com/iptq/mapping-tools): wip port of mapping tools to rust
+- [editor](https://github.com/mzhang28/editor): wip osu editor
+- [mapping-tools](https://github.com/mzhang28/mapping-tools): wip port of mapping tools to rust
 
 If you have a project using libosu, open an issue with a brief description and
 I'll add it to the list!
@@ -51,5 +50,5 @@ License: MIT
 
 [1]: https://crates.io/crates/libosu
 [2]: https://docs.rs/libosu
-[3]: https://deps.rs/repo/github/iptq/libosu
-[4]: https://github.com/iptq/libosu/graphs/contributors
+[3]: https://deps.rs/repo/github/mzhang28/libosu
+[4]: https://github.com/mzhang28/libosu/graphs/contributors
