@@ -243,11 +243,12 @@ impl DbBeatmap {
             Mods::from_bits(value).ok_or(DbError::InvalidMods(value))?
           },
           {
-            assert_eq!(reader.read_u8()?, 0x0C);
             // "Until database version 20250107, this was a collection of Int-Double pairs"
             if version > 20250107 {
+              assert_eq!(reader.read_u8()?, 0x0C);
               reader.read_f32::<LittleEndian>()? as f64
             } else {
+              assert_eq!(reader.read_u8()?, 0x0D);
               reader.read_f64::<LittleEndian>()?
             }
           },
@@ -379,6 +380,15 @@ mod tests {
   };
 
   use super::{Db, DbBeatmap, DbBeatmapTimingPoint};
+
+  #[test]
+  fn test_modern_osudb_parse() {
+    use std::fs::File;
+
+    let osr = File::open("tests/files/modern_osu.db").unwrap();
+    let db = Db::parse(BufReader::new(osr)).unwrap();
+    assert_eq!(db.version, 20251022);
+  }
 
   // Thanks vernonlim for the osu.db file
   #[test]
