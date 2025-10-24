@@ -8,7 +8,7 @@ use num::{cast, Float, NumCast};
   Clone, Copy, Default, Debug, Display, PartialEq, Eq, Hash, PartialOrd,
 )]
 #[cfg_attr(feature = "serde", derive(Serialize, Deserialize))]
-#[display(fmt = "({}, {})", "x", "y")]
+#[display("({}, {})", "x", "y")]
 pub struct Point<T> {
   pub x: T,
   pub y: T,

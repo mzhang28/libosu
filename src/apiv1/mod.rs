@@ -10,7 +10,6 @@ use std::convert::TryInto;
 use std::fmt;
 use std::str::FromStr;
 
-use futures::stream::TryStreamExt;
 use reqwest::{Client, Url};
 use serde::de::DeserializeOwned;
 
@@ -43,7 +42,7 @@ impl API {
     T: DeserializeOwned,
   {
     let full_url = Url::from_str(&format!("{}{}", API_BASE, url.as_ref()))?;
-    let mut resp = self.client.get(full_url).send().await?;
+    let resp = self.client.get(full_url).send().await?;
     let result = resp.json().await?;
     Ok(result)
   }

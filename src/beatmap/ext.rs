@@ -48,7 +48,7 @@ impl Beatmap {
   }
 
   /// Iterate over both hit objects and timing points. See [`DoubleIter`] for more info.
-  pub fn double_iter(&self) -> DoubleIter {
+  pub fn double_iter(&self) -> DoubleIter<'_> {
     DoubleIter::new(self)
   }
 
