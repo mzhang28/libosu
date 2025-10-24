@@ -29,7 +29,7 @@ pub struct ReplayAction {
 
 bitflags! {
     /// The buttons being pressed during a frame of a replay
-    #[derive(Clone, Debug)]
+    #[derive(Clone, Debug, PartialEq, Eq)]
     pub struct Buttons: u32 {
         /// First mouse button
         const M1 = 1;
@@ -80,7 +80,8 @@ impl ReplayActionData {
 
         let buttons = if time.0 == -12345 {
           // allow this
-          unsafe { Buttons::from_bits_unchecked(bits) }
+          Buttons::from_bits_retain(bits)
+          // unsafe { Buttons::from_bits_unchecked(bits) }
         } else {
           Buttons::from_bits(bits).ok_or(ReplayError::InvalidButtons(bits))?
         };
