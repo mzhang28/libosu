@@ -12,7 +12,7 @@ description = "General-purpose osu! library."
 license = "MIT"
 readme = "README.md"
 keywords = ["osu"]
-repository = "https://github.com/iptq/libosu.git"
+repository = "https://github.com/mzhang28/libosu.git"
 documentation = "https://docs.rs/libosu/"
 
 [profile.release]
