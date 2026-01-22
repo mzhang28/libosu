@@ -113,10 +113,13 @@ test_serde! {
     test_parser_804683: 804683,
     test_parser_1595588: 1595588,
 
-    // https://github.com/iptq/libosu/issues/12
+    // https://github.com/mzhang28/libosu/issues/12
     test_parser_1360: 1360,
     test_parser_3516: 3516,
 
-    // https://github.com/iptq/libosu/issues/13
+    // https://github.com/mzhang28/libosu/issues/13
     test_parser_169355: 169355,
+
+    // https://github.com/mzhang28/libosu/issues/24
+    test_parser_1513248: 1513248,
 }
