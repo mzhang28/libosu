@@ -5,3 +5,5 @@ target
 *~
 .direnv
 /result*
+
+mutants.out
