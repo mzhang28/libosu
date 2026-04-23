@@ -1,0 +1,20 @@
+[package]
+name = "libosu-py"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "libosu"
+crate-type = ["cdylib", "rlib"]
+
+[[bin]]
+name = "stub_gen"
+path = "src/bin/stub_gen.rs"
+
+[dependencies]
+pyo3 = { version = "0.28.3" }
+pyo3-stub-gen = "0.22"
+libosu_lib = { package = "libosu", path = ".." }
+
+[features]
+extension-module = ["pyo3/extension-module"]
