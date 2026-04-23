@@ -10,11 +10,13 @@ crate-type = ["cdylib", "rlib"]
 [[bin]]
 name = "stub_gen"
 path = "src/bin/stub_gen.rs"
+required-features = ["stub-gen"]
 
 [dependencies]
 pyo3 = { version = "0.28.3" }
-pyo3-stub-gen = "0.22"
+pyo3-stub-gen = { version = "0.22", optional = true }
 libosu_lib = { package = "libosu", path = ".." }
 
 [features]
 extension-module = ["pyo3/extension-module"]
+stub-gen = ["pyo3-stub-gen"]
