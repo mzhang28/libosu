@@ -6,4 +6,4 @@ target
 .direnv
 /result*
 
-mutants.out
+mutants.out*
